@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#17492f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Leçon 6 — Le Texas · Les enchères gadget</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<style>
+:root{
+  --ink:#10161a;
+  --ink-soft:#3d4a52;
+  --paper:#faf8f3;
+  --paper-2:#f2eee4;
+  --baize:#17492f;
+  --baize-light:#2c6b48;
+  --brass:#a87b2a;
+  --rouge:#b3231c;
+  --rule:#d9d2c2;
+  --ok:#1d6b41;
+  --ko:#a3241d;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;line-height:1.5;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:820px;margin:0 auto;padding:0 18px 64px}
+
+/* ---------- en-tête ---------- */
+header.top{
+  background:var(--baize);
+  color:#f4efe2;
+  border-bottom:3px solid var(--brass);
+}
+header.top .wrap{padding-top:20px;padding-bottom:18px}
+.serie{
+  font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:#bcd8c6;margin:0 0 6px;
+}
+header.top h1{
+  font-family:Georgia,"Palatino Linotype",Palatino,serif;
+  font-weight:600;font-size:29px;line-height:1.15;margin:0;
+}
+header.top h1 .num{color:var(--brass)}
+.soustitre{margin:8px 0 0;font-size:14px;color:#c9dcd0}
+.installer{
+  appearance:none;margin-top:12px;background:none;border:1px solid var(--brass);
+  color:#f0e2c4;font:inherit;font-size:13px;padding:9px 16px;border-radius:2px;cursor:pointer;
+}
+.installer:hover{background:var(--brass);color:#12241a}
+
+/* ---------- onglets ---------- */
+nav.tabs{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+nav.tabs .wrap{display:flex;gap:4px;padding-top:0;padding-bottom:0}
+nav.tabs label{
+  flex:1;cursor:pointer;user-select:none;text-align:center;
+  font-size:14px;color:var(--ink-soft);
+  padding:14px 6px 12px;border-bottom:3px solid transparent;
+}
+.onglet-radio{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+#r-lecon:checked ~ nav.tabs label[for="r-lecon"],
+#r-donnes:checked ~ nav.tabs label[for="r-donnes"],
+#r-quiz:checked ~ nav.tabs label[for="r-quiz"]{
+  color:var(--baize);font-weight:600;border-bottom-color:var(--brass);
+}
+#r-lecon:focus-visible ~ nav.tabs label[for="r-lecon"],
+#r-donnes:focus-visible ~ nav.tabs label[for="r-donnes"],
+#r-quiz:focus-visible ~ nav.tabs label[for="r-quiz"]{outline:2px solid var(--brass);outline-offset:-2px}
+
+section.panel{display:none}
+#r-lecon:checked ~ #panel-lecon,
+#r-donnes:checked ~ #panel-donnes,
+#r-quiz:checked ~ #panel-quiz{display:block}
+
+/* réponses des donnes : <details>, sans JavaScript */
+details.reveler-bloc{margin-top:2px}
+details.reveler-bloc > summary{
+  list-style:none;cursor:pointer;display:block;text-align:center;
+  border:1px solid var(--baize);color:var(--baize);
+  font-size:13.5px;padding:10px 14px;border-radius:2px;
+}
+details.reveler-bloc > summary::-webkit-details-marker{display:none}
+details.reveler-bloc[open] > summary{display:none}
+
+/* ---------- leçon ---------- */
+.lecon{font-family:Georgia,"Palatino Linotype",Palatino,serif;font-size:16.5px;line-height:1.62}
+.lecon .page{padding:26px 0 8px}
+.lecon h2{
+  font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  color:var(--baize);margin:26px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--rule);
+}
+.lecon h2:first-child{margin-top:0}
+.lecon p{margin:0 0 11px}
+.lecon ul{margin:0 0 11px;padding-left:20px}
+.lecon li{margin-bottom:5px}
+.lecon .chapo{font-size:17.5px;color:var(--ink-soft);font-style:italic;margin-bottom:16px}
+.encadre{
+  background:var(--paper-2);border-left:3px solid var(--brass);
+  padding:12px 14px;margin:0 0 14px;font-size:15.5px;
+}
+.encadre strong{color:var(--baize)}
+table.reponses{border-collapse:collapse;width:100%;margin:0 0 14px;font-size:15px}
+table.reponses th,table.reponses td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+table.reponses th{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--baize);
+}
+table.reponses td:first-child{white-space:nowrap;font-weight:600;width:88px}
+.pied-page{
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:#9a9382;
+}
+
+/* ---------- diagramme d'enchères (élément signature) ---------- */
+.encheres{
+  display:inline-block;border:1px solid var(--rule);background:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  min-width:220px;
+}
+.encheres .entete{display:grid;grid-template-columns:1fr 1fr;background:var(--baize);color:#eef3ee}
+.encheres .entete span{
+  padding:5px 10px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;text-align:center;
+}
+.encheres .entete span+span{border-left:1px solid var(--baize-light)}
+.encheres .ligne{display:grid;grid-template-columns:1fr 1fr}
+.encheres .ligne span{
+  padding:6px 10px;text-align:center;font-size:16px;border-top:1px solid var(--rule);
+}
+.encheres .ligne span+span{border-left:1px solid var(--rule)}
+.encheres .attente{color:var(--brass);font-weight:700}
+.r{color:var(--rouge)}
+.n{color:var(--ink)}
+
+/* ---------- main ---------- */
+.main{
+  font-family:"SF Mono",Menlo,Consolas,monospace;font-size:16px;line-height:1.85;
+  background:#fff;border:1px solid var(--rule);padding:10px 14px;display:inline-block;min-width:190px;
+}
+.main div{white-space:nowrap}
+.main .sym{display:inline-block;width:1.2em}
+
+/* ---------- donnes ---------- */
+.donne{
+  background:#fff;border:1px solid var(--rule);border-radius:2px;
+  padding:16px;margin:0 0 14px;
+}
+.donne .num{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);
+  font-weight:700;margin-bottom:10px;
+}
+.donne .num .role{color:var(--ink-soft);font-weight:400;letter-spacing:.06em}
+.duo{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start}
+.question{margin:12px 0 10px;font-size:15px;color:var(--ink-soft)}
+.reponse-bloc{border-top:1px solid var(--rule);padding-top:11px;margin-top:11px}
+.verdict{font-weight:700;font-size:17px;margin-bottom:6px}
+.verdict.bon{color:var(--ok)}
+.verdict.mauvais{color:var(--ko)}
+.commentaire{font-size:14.5px;color:var(--ink-soft);line-height:1.55}
+.commentaire em{color:var(--baize);font-style:normal;font-weight:600}
+.alt{
+  margin-top:8px;font-size:13.5px;color:var(--brass);
+  border-left:2px solid var(--brass);padding-left:9px;
+}
+button.reveler{
+  appearance:none;border:1px solid var(--baize);background:none;color:var(--baize);
+  font:inherit;font-size:13.5px;padding:7px 14px;border-radius:2px;cursor:pointer;
+}
+button.reveler:hover{background:var(--baize);color:#fff}
+
+/* ---------- boutons de réponse ---------- */
+.choix{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.choix button{
+  appearance:none;border:1px solid var(--rule);background:#fff;color:var(--ink);
+  font:inherit;font-size:17px;min-width:74px;padding:10px 14px;border-radius:2px;cursor:pointer;
+}
+.choix button:hover:not(:disabled){border-color:var(--baize);background:var(--paper-2)}
+.choix button:disabled{cursor:default;opacity:.55}
+.choix button.juste{background:#e7f1ea;border-color:var(--ok);color:var(--ok);opacity:1;font-weight:700}
+.choix button.faux{background:#f7e7e6;border-color:var(--ko);color:var(--ko);opacity:1;font-weight:700}
+
+/* ---------- quiz ---------- */
+.barre{
+  display:flex;align-items:center;gap:12px;margin:22px 0 18px;
+  font-size:13px;color:var(--ink-soft);
+}
+.jauge{flex:1;height:5px;background:var(--paper-2);border-radius:3px;overflow:hidden}
+.jauge i{display:block;height:100%;background:var(--brass);width:0;transition:width .3s}
+.bilan{background:#fff;border:1px solid var(--rule);padding:22px;text-align:center}
+.bilan .score{
+  font-family:Georgia,serif;font-size:44px;color:var(--baize);line-height:1;margin-bottom:6px;
+}
+.bilan .score small{font-size:20px;color:var(--ink-soft)}
+.bilan p{color:var(--ink-soft);font-size:14.5px;margin:6px 0 16px}
+button.primaire{
+  appearance:none;border:0;background:var(--baize);color:#fff;font:inherit;font-size:15px;
+  padding:12px 26px;border-radius:2px;cursor:pointer;
+}
+button.primaire:hover{background:var(--baize-light)}
+.stats{margin-top:22px;font-size:13px;color:var(--ink-soft);text-align:center}
+.intro-quiz{margin:22px 0;font-size:15px;color:var(--ink-soft)}
+.alerte{background:#f7e7e6;border-left:3px solid var(--ko);padding:10px 12px;margin:18px 0;font-size:13px}
+
+/* ---------- historique des notes ---------- */
+.historique{margin-top:26px;border-top:1px solid var(--rule);padding-top:16px}
+.historique h3{
+  font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--baize);
+  margin:0 0 4px;font-weight:600;
+}
+.historique .resume{font-size:13px;color:var(--ink-soft);margin:0 0 14px}
+.courbe{
+  display:flex;align-items:flex-end;gap:6px;height:118px;
+  overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;
+}
+.courbe .col{
+  flex:0 0 34px;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;
+  justify-content:flex-end;
+}
+.courbe .val{font-size:11px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.courbe .bar{
+  width:100%;background:var(--brass);border-radius:2px 2px 0 0;min-height:3px;
+  transition:height .35s ease;
+}
+.courbe .bar.haut{background:var(--ok)}
+.courbe .bar.bas{background:var(--ko)}
+.courbe .rang{font-size:10px;color:#9a9382;font-variant-numeric:tabular-nums}
+.courbe .col.derniere .val{color:var(--baize);font-weight:700}
+.effacer{
+  appearance:none;background:none;border:0;font:inherit;font-size:12px;
+  color:var(--ink-soft);text-decoration:underline;cursor:pointer;padding:8px 0 0;
+}
+
+@media (max-width:560px){
+  header.top h1{font-size:22px}
+  header.top .wrap{padding-top:16px;padding-bottom:14px}
+  .soustitre{font-size:13px}
+  .wrap{padding-left:14px;padding-right:14px;padding-bottom:48px}
+  .lecon{font-size:16px;line-height:1.58}
+  nav.tabs button{font-size:13px;padding:14px 4px 12px}
+  /* diagramme et main côte à côte, chacun sur une moitié d'écran */
+  .duo{gap:10px}
+  .encheres{flex:1 1 0;min-width:0}
+  .encheres .entete span{padding:4px 4px;font-size:9.5px;letter-spacing:.08em}
+  .encheres .ligne span{padding:6px 4px;font-size:15px}
+  .main{flex:1 1 0;min-width:0;font-size:15px;padding:8px 10px;line-height:1.75}
+  .donne{padding:14px 13px}
+  table.reponses{font-size:14px}
+  table.reponses th,table.reponses td{padding:6px 5px}
+  table.reponses td:first-child{width:74px}
+  /* boutons de réponse : deux par ligne, cible tactile confortable */
+  .choix{gap:7px}
+  .choix button{flex:1 1 calc(50% - 4px);min-width:0;padding:14px 8px;font-size:18px}
+  button.primaire{width:100%;padding:14px 20px}
+  button.reveler{width:100%;padding:12px 14px}
+  .bilan{padding:18px 14px}
+  .bilan .score{font-size:38px}
+  .courbe .col{flex:0 0 30px}
+}
+@media (max-width:360px){
+  .encheres .ligne span{font-size:14px}
+  .main{font-size:14px}
+}
+@media (hover:none){
+  .choix button:hover:not(:disabled){background:#fff;border-color:var(--rule)}
+  button.reveler:hover{background:none;color:var(--baize)}
+}
+html{-webkit-tap-highlight-color:rgba(23,73,47,.12)}
+
+/* ---------- impression : la leçon sur deux pages ---------- */
+@media print{
+  nav.tabs,header.top,.no-print{display:none !important}
+  body{background:#fff;font-size:10.5pt}
+  .wrap{max-width:none;padding:0}
+  section.panel{display:none !important}
+  section#panel-lecon{display:block !important}
+  .lecon{font-size:10.5pt;line-height:1.42}
+  .lecon h2{margin:12pt 0 5pt;font-size:9pt}
+  .lecon .page{padding:0}
+  .lecon .page + .page{break-before:page;page-break-before:always}
+  .encadre,.donne,.encheres,table.reponses{break-inside:avoid;page-break-inside:avoid}
+  .titre-impression{display:block !important}
+}
+.titre-impression{display:none;font-family:Georgia,serif;font-size:16pt;margin:0 0 4pt}
+.sous-impression{display:none}
+@media print{.sous-impression{display:block;font-size:9pt;color:#555;margin:0 0 10pt}}
+
+/* ---------- page d'accueil ---------- */
+body.accueil header.top h1 .num{color:var(--brass)}
+.retour{color:#bcd8c6;text-decoration:none;letter-spacing:.12em}
+.retour:hover{color:#fff}
+.sommaire{margin:28px 0 0}
+.sommaire h2{
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--baize);
+  margin:0 0 12px;padding-bottom:6px;border-bottom:1px solid var(--rule);
+}
+.carte-lecon{
+  display:block;background:#fff;border:1px solid var(--rule);border-left:3px solid var(--brass);
+  padding:15px 16px;margin:0 0 12px;text-decoration:none;color:var(--ink);
+}
+.carte-lecon:hover{border-left-color:var(--baize);background:#fffef9}
+.carte-lecon .numero{
+  display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brass);font-weight:700;margin-bottom:5px;
+}
+.carte-lecon .titre-lecon{
+  display:block;font-family:Georgia,"Palatino Linotype",serif;font-size:20px;
+  color:var(--baize);margin-bottom:5px;line-height:1.2;
+}
+.carte-lecon .resume-lecon{display:block;font-size:14px;color:var(--ink-soft);line-height:1.5}
+.carte-lecon .note-lecon{
+  display:block;margin-top:9px;font-size:12.5px;color:var(--brass);
+  border-top:1px solid var(--paper-2);padding-top:8px;
+}
+.carte-lecon.future{
+  border-left-color:var(--rule);background:var(--paper-2);opacity:.75;cursor:default;
+}
+.carte-lecon.future .numero{color:#9a9382}
+.carte-lecon.future .titre-lecon{font-size:17px;color:var(--ink-soft)}
+.mention{font-size:12.5px;color:#9a9382;margin:26px 0 0;line-height:1.5}
+
+/* ---------- aide à l'installation ---------- */
+.aide-install{
+  margin-top:10px;background:rgba(0,0,0,.18);border-left:3px solid var(--brass);
+  padding:10px 12px;font-size:13px;line-height:1.55;color:#e6efe8;
+}
+.aide-install strong{color:var(--brass)}
+
+/* ---------- diagramme à trois colonnes (enchères adverses) ---------- */
+.encheres.trois{min-width:250px}
+.encheres.trois .entete,.encheres.trois .ligne{grid-template-columns:1fr 1fr 1fr}
+.encheres.trois .entete span{padding:5px 6px;font-size:9.5px}
+.encheres.trois .ligne span{padding:6px 6px;font-size:15px}
+.encheres .adv{color:var(--ink-soft);font-style:italic}
+@media (max-width:560px){
+  .encheres.trois .entete span{font-size:8.5px;letter-spacing:.04em;padding:4px 2px}
+  .encheres.trois .ligne span{font-size:14px;padding:6px 2px}
+}
+
+</style>
+</head>
+<body>
+
+<input type="radio" name="onglet" id="r-lecon" class="onglet-radio" checked>
+<input type="radio" name="onglet" id="r-donnes" class="onglet-radio">
+<input type="radio" name="onglet" id="r-quiz" class="onglet-radio">
+
+<header class="top">
+  <div class="wrap">
+    <p class="serie"><a class="retour" href="index.html">‹ Les enchères gadget</a></p>
+    <h1><span class="num">Leçon 6.</span> Le Texas</h1>
+    <p class="soustitre">Transférer la majeure pour laisser la main forte déclarer</p>
+    <button id="installer" class="installer" onclick="installer()">Installer l'application</button>
+    <div id="aide-install" class="aide-install" hidden>
+      <strong>Android</strong> — menu ⋮ de Chrome, puis « Ajouter à l'écran d'accueil ».<br>
+      <strong>iPhone</strong> — bouton Partager de Safari, puis « Sur l'écran d'accueil ».
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap">
+    <label for="r-lecon">Leçon</label>
+    <label for="r-donnes">Les 25 donnes</label>
+    <label for="r-quiz">Quiz de 5</label>
+  </div>
+</nav>
+
+<section class="panel" id="panel-lecon">
+<div class="wrap lecon">
+<div class="page">
+      <p class="titre-impression">Les enchères gadget — Leçon 6 : le Texas et les transferts</p>
+      <p class="sous-impression">Page 1 / 2 — le mécanisme sur l'ouverture de 1SA</p>
+
+      <p class="chapo">Transférer, c'est demander à son partenaire d'annoncer la couleur que l'on possède. On y gagne deux choses : la main forte reste cachée et devient déclarante, et le répondant conserve la parole pour décrire tout le reste.</p>
+
+      <h2>Le problème</h2>
+      <p>Le répondant tient cinq Piques et 8 H en face d'une ouverture de 1SA. S'il annonce 2♠ naturel, c'est lui qui jouera : l'entame passera à travers la main forte, à découvert, et l'adversaire verra le mort étalé au-dessus de ses honneurs. Pis, 2♠ naturel serait faible et fermerait la porte à toute invitation.</p>
+
+      <h2>Le principe</h2>
+      <div class="encadre">
+        <strong>2♦ demande les Cœurs, 2♥ demande les Piques.</strong> Le répondant promet cinq cartes au moins dans la majeure indiquée, sans limite de force. L'ouvreur <strong>doit</strong> nommer cette majeure au palier de 2 : il n'a pas le choix, et n'a rien dit en le faisant.
+      </div>
+      <div class="duo">
+        <div class="encheres" aria-label="1 Sans-Atout, 2 Carreau, 2 Coeur">
+          <div class="entete"><span>Ouvreur</span><span>Répondant</span></div>
+          <div class="ligne"><span>1SA</span><span class="attente">2<b class="r">♦</b></span></div>
+          <div class="ligne"><span>2<b class="r">♥</b></span><span>…</span></div>
+        </div>
+        <div style="flex:1;min-width:200px">
+          <p style="margin-top:0">Le transfert se fait toujours dans la couleur <em>immédiatement inférieure</em> à celle que l'on veut jouer. C'est la règle qui rend l'ensemble mémorisable, à tous les paliers.</p>
+        </div>
+      </div>
+
+      <h2>Le deuxième tour du répondant</h2>
+      <p>C'est là que le transfert paie : après l'acceptation, le répondant décrit sa main librement, ce qu'un 2♠ naturel lui aurait interdit.</p>
+      <table class="reponses">
+        <tr><th>Enchère</th><th>Signification</th></tr>
+        <tr><td>Passe</td><td>0 à 7 H, cinq cartes : on est au bon contrat.</td></tr>
+        <tr><td>2SA</td><td>8-9 H, exactement cinq cartes. Invitation, avec le choix entre la majeure et sans-atout.</td></tr>
+        <tr><td>3 de la majeure</td><td>8-9 H et six cartes : invitation à la manche à la couleur.</td></tr>
+        <tr><td>3SA</td><td>10 à 15 H, cinq cartes. L'ouvreur passe avec deux cartes, corrige à 4 avec trois.</td></tr>
+        <tr><td>4 de la majeure</td><td>10 à 15 H et six cartes : à jouer.</td></tr>
+        <tr><td>Nouvelle couleur</td><td>Cinq-quatre, forcing de manche : on cherche encore le meilleur contrat.</td></tr>
+      </table>
+
+      <h2>La super-acceptation</h2>
+      <p>L'ouvreur qui détient <strong>quatre cartes dans la majeure demandée et 17 H</strong> saute d'un palier : sur 2♦, il dit 3♥. Le fit neuvième est connu, le répondant conclura à la manche avec presque rien. C'est la seule liberté que le transfert lui laisse.</p>
+      <p class="pied-page" style="color:#9a9382;margin-top:18px">Page 1 / 2</p>
+    </div>
+
+    <div class="page">
+      <p class="sous-impression">Page 2 / 2 — le palier de 4, les autres ouvertures, les cas particuliers</p>
+
+      <h2>Le Texas au palier de 4</h2>
+      <div class="encadre">
+        Sur 1SA, <strong>4♦ demande les Cœurs et 4♥ demande les Piques</strong>. Six cartes, une main de manche, et surtout <strong>aucune ambition de chelem</strong> : on ferme la porte en même temps qu'on la franchit.
+      </div>
+      <p>Passer par 2♦ avant de dire 4♥ décrit la même longueur, mais laisse l'ouvreur relancer s'il a le maximum et des contrôles. La différence est là, et nulle part ailleurs.</p>
+
+      <h2>Sur les autres ouvertures</h2>
+      <p>Le mécanisme est le même, décalé d'un palier : après une ouverture de <strong>2SA</strong>, ou après un fort 2♣ suivi d'une redemande de 2SA, <strong>3♦ demande les Cœurs et 3♥ demande les Piques</strong>. L'ouvreur accepte au palier de 3, et le répondant conclut.</p>
+
+      <h2>Les mains bicolores</h2>
+      <ul>
+        <li><strong>Cinq-quatre en majeures</strong>, à partir de 11 H : on commence par le Stayman 2♣, qui trouvera le fit 4-4 ; les cinq cartes se diront ensuite.</li>
+        <li><strong>Cinq-cinq en majeures, main faible</strong> : transfert à Cœur par 2♦, puis 2♠ — non forcing, l'ouvreur choisit entre les deux.</li>
+        <li><strong>Cinq cartes en majeure et quatre dans une mineure</strong>, main de manche : transfert d'abord, mineure ensuite, ce qui est forcing.</li>
+      </ul>
+
+      <h2>Ce qui reste naturel</h2>
+      <p><strong>2♣</strong> demeure le Stayman, et <strong>2SA</strong> reste naturel et invitationnel, 8-9 H sans majeure cinquième. Les transferts ne mangent que 2♦ et 2♥ — deux enchères naturelles dont on ne se sert presque jamais.</p>
+
+      <h2>Deux pièges</h2>
+      <ul>
+        <li><strong>Refuser d'accepter.</strong> L'ouvreur nomme la majeure même avec un doubleton, même avec 15 H : le transfert n'est pas une question.</li>
+        <li><strong>Sauter directement à 4♥ ou 4♠.</strong> C'est le répondant qui deviendrait déclarant, ce que toute la convention cherche à éviter. On passe par 4♦ ou 4♥ Texas.</li>
+      </ul>
+
+      <h2>À retenir</h2>
+      <ul>
+        <li>2♦ demande les Cœurs, 2♥ demande les Piques ; l'acceptation est obligatoire.</li>
+        <li>Le répondant décrit ensuite : passe, 2SA, 3M, 3SA, 4M, ou nouvelle couleur forcing.</li>
+        <li>Super-acceptation par saut avec quatre atouts et 17 H.</li>
+        <li>4♦ et 4♥ sur 1SA : six cartes, manche à jouer, pas de chelem.</li>
+      </ul>
+      <p class="pied-page" style="color:#9a9382;margin-top:18px">Page 2 / 2</p>
+      <p class="no-print" style="font-family:-apple-system,sans-serif;font-size:13px;color:var(--ink-soft)">
+        Cette leçon s'imprime sur deux pages (Fichier → Imprimer).
+      </p>
+    </div>
+</div>
+</section>
+
+<section class="panel" id="panel-donnes">
+<div class="wrap">
+  <p class="intro-quiz">Les 25 donnes de la leçon. Réfléchissez, puis dépliez la réponse.</p>
+  <div id="liste-donnes">
+      <article class="donne">
+        <div class="num">Donne 01 <span class="role">· vous êtes le répondant · 3 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>8 4</div><div><span class="sym r">♥</span>R 10 8 6 3</div><div><span class="sym r">♦</span>9 7 5</div><div><span class="sym n">♣</span>6 3 2</div></div></div>
+        <p class="question">Cinq Cœurs, trois points. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">2<b class="r">♦</b></div>
+          <div class="commentaire"><em>2<b class="r">♦</b></em>, transfert Cœur, puis passe sur 2<b class="r">♥</b>. Avec trois points on veut jouer 2<b class="r">♥</b> et rien d'autre — et c'est l'ouvreur qui jouera, sa main forte cachée.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 02 <span class="role">· vous êtes le répondant · 8 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>A V 9 7 3</div><div><span class="sym r">♥</span>8 5</div><div><span class="sym r">♦</span>D V 6</div><div><span class="sym n">♣</span>9 4 2</div></div></div>
+        <p class="question">Cinq Piques, huit points. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">2<b class="r">♥</b></div>
+          <div class="commentaire"><em>2<b class="r">♥</b></em> demande les Piques. Le transfert se fait dans la couleur immédiatement inférieure — vous direz 2SA au tour suivant pour inviter.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 03 <span class="role">· vous êtes le répondant · 9 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>9 6 3</div><div><span class="sym r">♥</span>A D 8 5</div><div><span class="sym r">♦</span>R 7 4</div><div><span class="sym n">♣</span>10 8 2</div></div></div>
+        <p class="question">Quatre Cœurs seulement, neuf points. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">2<b class="n">♣</b></div>
+          <div class="commentaire"><em>2<b class="n">♣</b></em>, le Stayman. Le transfert promet cinq cartes : avec quatre, c'est le fit 4-4 qu'il faut chercher, et 2<b class="r">♦</b> ferait jouer une majeure trop courte.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 04 <span class="role">· vous êtes le répondant · 6 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>R 10 8 6 3</div><div><span class="sym r">♥</span>D V 9 7 5</div><div><span class="sym r">♦</span>8</div><div><span class="sym n">♣</span>6 4</div></div></div>
+        <p class="question">Cinq-cinq en majeures, six points. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">2<b class="r">♦</b></div>
+          <div class="commentaire"><em>2<b class="r">♦</b></em>, transfert Cœur, puis 2<b class="n">♠</b> non forcing : l'ouvreur choisira entre vos deux couleurs. Commencer par les Piques obligerait à monter au palier de 3 pour montrer les Cœurs.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 05 <span class="role">· vous êtes l'ouvreur · 17 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span>2<b class="r">♦</b></span></div><div class="ligne"><span class="attente">?</span><span></span></div></div><div class="main"><div><span class="sym n">♠</span>A D 9 5</div><div><span class="sym r">♥</span>8 4</div><div><span class="sym r">♦</span>A R 7</div><div><span class="sym n">♣</span>R V 9 3</div></div></div>
+        <p class="question">Votre partenaire transfère et vous n'avez que deux Cœurs. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">2<b class="r">♥</b></div>
+          <div class="commentaire"><em>2<b class="r">♥</b></em>, sans discuter. L'acceptation est obligatoire, même avec un doubleton et 17 H : le transfert n'est pas une question, et vous parlerez au tour suivant.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 06 <span class="role">· vous êtes l'ouvreur · 17 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span>2<b class="r">♦</b></span></div><div class="ligne"><span class="attente">?</span><span></span></div></div><div class="main"><div><span class="sym n">♠</span>A D</div><div><span class="sym r">♥</span>R D 8 5</div><div><span class="sym r">♦</span>A 10 6 4</div><div><span class="sym n">♣</span>D 7 3</div></div></div>
+        <p class="question">Quatre Cœurs et dix-sept points. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">3<b class="r">♥</b></div>
+          <div class="commentaire"><em>3<b class="r">♥</b></em>, la super-acceptation : quatre atouts et le maximum. Le fit neuvième est annoncé, le partenaire conclura à 4<b class="r">♥</b> avec très peu de chose.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 07 <span class="role">· vous êtes le répondant · 3 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span>2<b class="r">♦</b></span></div><div class="ligne"><span>2<b class="r">♥</b></span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>8 4</div><div><span class="sym r">♥</span>R 10 8 6 3</div><div><span class="sym r">♦</span>9 7 5</div><div><span class="sym n">♣</span>6 3 2</div></div></div>
+        <p class="question">L'ouvreur a accepté. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">Passe</div>
+          <div class="commentaire"><em>Passe</em>. Le contrat cherché est atteint : 2<b class="r">♥</b> joué par la main forte. Toute autre enchère promettrait des valeurs que vous n'avez pas.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 08 <span class="role">· vous êtes le répondant · 8 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span>2<b class="r">♥</b></span></div><div class="ligne"><span>2<b class="n">♠</b></span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>A V 9 7 3</div><div><span class="sym r">♥</span>8 5</div><div><span class="sym r">♦</span>D V 6</div><div><span class="sym n">♣</span>9 4 2</div></div></div>
+        <p class="question">L'ouvreur a nommé vos Piques. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">2SA</div>
+          <div class="commentaire"><em>2SA</em> : 8-9 H et exactement cinq cartes. L'ouvreur choisira entre passer, 3<b class="n">♠</b>, 3SA et 4<b class="n">♠</b> selon sa force et son nombre de Piques.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 09 <span class="role">· vous êtes le répondant · 14 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span>2<b class="r">♥</b></span></div><div class="ligne"><span>2<b class="n">♠</b></span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>A V 9 7 3</div><div><span class="sym r">♥</span>R 5</div><div><span class="sym r">♦</span>D 10 6</div><div><span class="sym n">♣</span>A 4 2</div></div></div>
+        <p class="question">Quatorze points et cinq Piques. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">3SA</div>
+          <div class="commentaire"><em>3SA</em>, qui offre le choix : l'ouvreur passera avec deux Piques et corrigera à 4<b class="n">♠</b> avec trois. 4<b class="n">♠</b> direct imposerait un contrat qui peut être moins bon.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 10 <span class="role">· vous êtes le répondant · 13 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>7</div><div><span class="sym r">♥</span>A D 10 8 6 3</div><div><span class="sym r">♦</span>R V 5</div><div><span class="sym n">♣</span>R 4 2</div></div></div>
+        <p class="question">Six Cœurs, treize points, pas d'ambition de chelem. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">4<b class="r">♦</b></div>
+          <div class="commentaire"><em>4<b class="r">♦</b></em>, le Texas au palier de 4 : six cartes, une main de manche, et la porte du chelem fermée. L'ouvreur dira 4<b class="r">♥</b> et jouera le contrat.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 11 <span class="role">· vous êtes l'ouvreur · 17 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span>4<b class="r">♦</b></span></div><div class="ligne"><span class="attente">?</span><span></span></div></div><div class="main"><div><span class="sym n">♠</span>A D 9 5</div><div><span class="sym r">♥</span>R 4</div><div><span class="sym r">♦</span>A D 8</div><div><span class="sym n">♣</span>D 10 7 3</div></div></div>
+        <p class="question">Le partenaire annonce le Texas au palier de 4. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">4<b class="r">♥</b></div>
+          <div class="commentaire"><em>4<b class="r">♥</b></em>. L'acceptation reste obligatoire, et le partenaire a exclu le chelem : vos 17 H ne changent rien, il connaît la fourchette de votre ouverture.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 12 <span class="role">· vous êtes le répondant · 3 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>9 5</div><div><span class="sym r">♥</span>V 10 8 6 4 3</div><div><span class="sym r">♦</span>D 7 2</div><div><span class="sym n">♣</span>8 4</div></div></div>
+        <p class="question">Six Cœurs et trois points. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">2<b class="r">♦</b></div>
+          <div class="commentaire"><em>2<b class="r">♦</b></em>, puis passe sur 2<b class="r">♥</b>. Le Texas au palier de 4 promet une main de manche : ici, il s'agit seulement de fuir 1SA vers un contrat jouable.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 13 <span class="role">· vous êtes le répondant · 14 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>A D 9 7 3</div><div><span class="sym r">♥</span>8</div><div><span class="sym r">♦</span>R 5 4</div><div><span class="sym n">♣</span>A V 7 2</div></div></div>
+        <p class="question">Cinq Piques, quatre Trèfles, quatorze points. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">2<b class="r">♥</b></div>
+          <div class="commentaire"><em>2<b class="r">♥</b></em> d'abord : on montre la majeure cinquième, puis 3<b class="n">♣</b> au tour suivant, forcing de manche. Le singleton Cœur rend 3SA très douteux.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 14 <span class="role">· vous êtes l'ouvreur · 15 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span>2<b class="r">♥</b></span></div><div class="ligne"><span>2<b class="n">♠</b></span><span>2SA</span></div><div class="ligne"><span class="attente">?</span><span></span></div></div><div class="main"><div><span class="sym n">♠</span>A D 6 5</div><div><span class="sym r">♥</span>D 9 4</div><div><span class="sym r">♦</span>A R 8</div><div><span class="sym n">♣</span>10 7 3</div></div></div>
+        <p class="question">Le partenaire invite avec cinq Piques. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">4<b class="n">♠</b></div>
+          <div class="commentaire"><em>4<b class="n">♠</b></em>. Quatre Piques en face de cinq et un minimum bien placé : le fit neuvième vaut mieux que les points manquants, et 3SA se jouerait sans arrêt à Cœur.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 15 <span class="role">· vous êtes l'ouvreur · 15 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span>2<b class="r">♦</b></span></div><div class="ligne"><span>2<b class="r">♥</b></span><span>2SA</span></div><div class="ligne"><span class="attente">?</span><span></span></div></div><div class="main"><div><span class="sym n">♠</span>A D 9 5</div><div><span class="sym r">♥</span>8 4</div><div><span class="sym r">♦</span>R D 7</div><div><span class="sym n">♣</span>R V 9 3</div></div></div>
+        <p class="question">Le partenaire invite avec cinq Cœurs. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">Passe</div>
+          <div class="commentaire"><em>Passe</em>. Quinze points, le minimum de l'ouverture, et seulement deux Cœurs : 23-24 points à deux ne font pas une manche. L'invitation se refuse aussi.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 16 <span class="role">· vous êtes le répondant · 5 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>2SA</span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>R 10 8 6 3</div><div><span class="sym r">♥</span>9 4</div><div><span class="sym r">♦</span>D 8 5</div><div><span class="sym n">♣</span>7 6 2</div></div></div>
+        <p class="question">L'ouverture est de 2SA. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">3<b class="r">♥</b></div>
+          <div class="commentaire"><em>3<b class="r">♥</b></em> demande les Piques : le mécanisme est le même, décalé d'un palier. Cinq points en face de 20-21 H suffisent largement pour la manche.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 17 <span class="role">· vous êtes l'ouvreur · 20 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>2SA</span><span>3<b class="r">♥</b></span></div><div class="ligne"><span class="attente">?</span><span></span></div></div><div class="main"><div><span class="sym n">♠</span>A D 7</div><div><span class="sym r">♥</span>A R 5</div><div><span class="sym r">♦</span>R D 9 4</div><div><span class="sym n">♣</span>D 8 3</div></div></div>
+        <p class="question">Le partenaire transfère à Pique. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">3<b class="n">♠</b></div>
+          <div class="commentaire"><em>3<b class="n">♠</b></em>, l'acceptation. C'est au répondant de choisir la hauteur : il passera avec une main faible et cinq cartes seulement, conclura sinon.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 18 <span class="role">· vous êtes le répondant · 3 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span>2<b class="r">♦</b></span></div><div class="ligne"><span>3<b class="r">♥</b></span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>8 4</div><div><span class="sym r">♥</span>R 10 8 6 3</div><div><span class="sym r">♦</span>9 7 5</div><div><span class="sym n">♣</span>6 3 2</div></div></div>
+        <p class="question">L'ouvreur a sur-accepté. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">4<b class="r">♥</b></div>
+          <div class="commentaire"><em>4<b class="r">♥</b></em>. Le saut annonçait quatre atouts et 17 H : neuf atouts et 20 points à deux, la manche se joue même avec trois points en face.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 19 <span class="role">· vous êtes le répondant · 16 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>A D 5</div><div><span class="sym r">♥</span>R V 9 7 3</div><div><span class="sym r">♦</span>A D 6</div><div><span class="sym n">♣</span>8 4</div></div></div>
+        <p class="question">Seize points et cinq Cœurs. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">2<b class="r">♦</b></div>
+          <div class="commentaire"><em>2<b class="r">♦</b></em> d'abord. Le chelem est en vue — 31 à 33 points à deux — et c'est justement pour cela qu'il ne faut pas prendre le Texas au palier de 4, qui l'exclurait.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 20 <span class="role">· vous êtes le répondant · 9 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>D 8 5</div><div><span class="sym r">♥</span>R 7 4</div><div><span class="sym r">♦</span>9 3</div><div><span class="sym n">♣</span>A 10 8 6 2</div></div></div>
+        <p class="question">Neuf points, cinq Trèfles, aucune majeure cinquième. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">2SA</div>
+          <div class="commentaire"><em>2SA</em>, naturel et invitationnel. Les transferts n'ont mangé que 2<b class="r">♦</b> et 2<b class="r">♥</b> : le 2SA du répondant garde tout son sens, 8-9 H sans majeure cinquième.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 21 <span class="role">· vous êtes l'ouvreur · 15 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span>2<b class="r">♥</b></span></div><div class="ligne"><span class="attente">?</span><span></span></div></div><div class="main"><div><span class="sym n">♠</span>R V 8 5</div><div><span class="sym r">♥</span>A 9</div><div><span class="sym r">♦</span>D V 7 4</div><div><span class="sym n">♣</span>A 6 3</div></div></div>
+        <p class="question">Quatre Piques, quinze points. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">2<b class="n">♠</b></div>
+          <div class="commentaire"><em>2<b class="n">♠</b></em>, l'acceptation simple. La super-acceptation demande quatre atouts <em>et</em> 17 H : avec le minimum, on se tait et l'on laisse le partenaire décrire sa main.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 22 <span class="role">· vous êtes le répondant · 12 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span>2<b class="r">♦</b></span></div><div class="ligne"><span>2<b class="r">♥</b></span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>R 8 4</div><div><span class="sym r">♥</span>A V 9 6 3</div><div><span class="sym r">♦</span>D 10 5</div><div><span class="sym n">♣</span>D 7</div></div></div>
+        <p class="question">Douze points et cinq Cœurs. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">3SA</div>
+          <div class="commentaire"><em>3SA</em> : 10 à 15 H avec exactement cinq cartes. L'ouvreur tranchera — 3SA avec deux Cœurs, 4<b class="r">♥</b> avec trois.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 23 <span class="role">· vous êtes l'ouvreur · 15 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span>2<b class="r">♦</b></span></div><div class="ligne"><span>2<b class="r">♥</b></span><span>3SA</span></div><div class="ligne"><span class="attente">?</span><span></span></div></div><div class="main"><div><span class="sym n">♠</span>A D 6 5</div><div><span class="sym r">♥</span>D 9 4</div><div><span class="sym r">♦</span>A R 8</div><div><span class="sym n">♣</span>10 7 3</div></div></div>
+        <p class="question">Le partenaire offre le choix de la manche. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">4<b class="r">♥</b></div>
+          <div class="commentaire"><em>4<b class="r">♥</b></em>. Trois Cœurs en face de cinq : le fit huitième l'emporte sur 3SA, d'autant que vos Trèfles ne sont pas tenus.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 24 <span class="role">· vous êtes le répondant · 5 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span>2<b class="r">♥</b></span></div><div class="ligne"><span>2<b class="n">♠</b></span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>R 10 8 6 4 3</div><div><span class="sym r">♥</span>9 5</div><div><span class="sym r">♦</span>D 8 2</div><div><span class="sym n">♣</span>7 4</div></div></div>
+        <p class="question">Six Piques, cinq points. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">Passe</div>
+          <div class="commentaire"><em>Passe</em>. 3<b class="n">♠</b> inviterait avec 8-9 H : ici la sixième carte ne compense pas l'absence de valeurs, et 2<b class="n">♠</b> est déjà un bon contrat.</div>
+          </div>
+        </details>
+      </article>
+      <article class="donne">
+        <div class="num">Donne 25 <span class="role">· vous êtes le répondant · 11 H</span></div>
+        <div class="duo"><div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div><div class="ligne"><span>1SA</span><span>2<b class="r">♥</b></span></div><div class="ligne"><span>2<b class="n">♠</b></span><span class="attente">?</span></div></div><div class="main"><div><span class="sym n">♠</span>A D 9 6 5 3</div><div><span class="sym r">♥</span>8 4</div><div><span class="sym r">♦</span>R D 7</div><div><span class="sym n">♣</span>9 2</div></div></div>
+        <p class="question">Six Piques, onze points. Que dites-vous ?</p>
+        <details class="reveler-bloc"><summary>Afficher la réponse</summary>
+          <div class="reponse-bloc"><div class="verdict bon">4<b class="n">♠</b></div>
+          <div class="commentaire"><em>4<b class="n">♠</b></em> : 10 à 15 H et six cartes, la manche est à jouer. 3SA serait absurde avec une couleur sixième et deux doubletons.</div>
+          </div>
+        </details>
+      </article>
+  </div>
+</div>
+</section>
+
+<section class="panel" id="panel-quiz">
+<div class="wrap">
+  <div id="zone-quiz">
+    <p class="intro-quiz" id="attente-quiz">Chargement du quiz…<br>
+    <span style="font-size:13.5px">Si ce message reste affiché, le navigateur n'exécute pas le JavaScript :
+    ouvrez la page depuis son adresse web. La leçon et les 25 donnes, elles, restent lisibles.</span></p>
+  </div>
+  <noscript>
+    <p class="alerte">Le JavaScript est désactivé : le quiz ne peut pas fonctionner.
+    La leçon et les 25 donnes restent consultables dans les deux premiers onglets.</p>
+  </noscript>
+</div>
+</section>
+
+<script>
+window.LECON = {
+  id: "06-texas",
+  titre: "Le Texas",
+  banque: [{"id":"tex-01","role":"Répondant","seq":["1SA","?"],"main":{"p":"8 4","c":"R 10 8 6 3","k":"9 7 5","t":"6 3 2"},"h":3,"question":"Cinq Cœurs, trois points. Que dites-vous ?","rep":"2♦","options":["2♦","2♥","Passe","2♣"],"com":"<em>2♦</em>, transfert Cœur, puis passe sur 2♥. Avec trois points on veut jouer 2♥ et rien d'autre — et c'est l'ouvreur qui jouera, sa main forte cachée."},{"id":"tex-02","role":"Répondant","seq":["1SA","?"],"main":{"p":"A V 9 7 3","c":"8 5","k":"D V 6","t":"9 4 2"},"h":8,"question":"Cinq Piques, huit points. Que dites-vous ?","rep":"2♥","options":["2♥","2♠","2♣","2SA"],"com":"<em>2♥</em> demande les Piques. Le transfert se fait dans la couleur immédiatement inférieure — vous direz 2SA au tour suivant pour inviter."},{"id":"tex-03","role":"Répondant","seq":["1SA","?"],"main":{"p":"9 6 3","c":"A D 8 5","k":"R 7 4","t":"10 8 2"},"h":9,"question":"Quatre Cœurs seulement, neuf points. Que dites-vous ?","rep":"2♣","options":["2♣","2♦","2SA","3SA"],"com":"<em>2♣</em>, le Stayman. Le transfert promet cinq cartes : avec quatre, c'est le fit 4-4 qu'il faut chercher, et 2♦ ferait jouer une majeure trop courte."},{"id":"tex-04","role":"Répondant","seq":["1SA","?"],"main":{"p":"R 10 8 6 3","c":"D V 9 7 5","k":"8","t":"6 4"},"h":6,"question":"Cinq-cinq en majeures, six points. Que dites-vous ?","rep":"2♦","options":["2♦","2♥","2♣","2♠"],"com":"<em>2♦</em>, transfert Cœur, puis 2♠ non forcing : l'ouvreur choisira entre vos deux couleurs. Commencer par les Piques obligerait à monter au palier de 3 pour montrer les Cœurs."},{"id":"tex-05","role":"Ouvreur","seq":["1SA","2♦","?"],"main":{"p":"A D 9 5","c":"8 4","k":"A R 7","t":"R V 9 3"},"h":17,"question":"Votre partenaire transfère et vous n'avez que deux Cœurs. Que dites-vous ?","rep":"2♥","options":["2♥","2SA","3♥","2♠"],"com":"<em>2♥</em>, sans discuter. L'acceptation est obligatoire, même avec un doubleton et 17 H : le transfert n'est pas une question, et vous parlerez au tour suivant."},{"id":"tex-06","role":"Ouvreur","seq":["1SA","2♦","?"],"main":{"p":"A D","c":"R D 8 5","k":"A 10 6 4","t":"D 7 3"},"h":17,"question":"Quatre Cœurs et dix-sept points. Que dites-vous ?","rep":"3♥","options":["3♥","2♥","4♥","2SA"],"com":"<em>3♥</em>, la super-acceptation : quatre atouts et le maximum. Le fit neuvième est annoncé, le partenaire conclura à 4♥ avec très peu de chose."},{"id":"tex-07","role":"Répondant","seq":["1SA","2♦","2♥","?"],"main":{"p":"8 4","c":"R 10 8 6 3","k":"9 7 5","t":"6 3 2"},"h":3,"question":"L'ouvreur a accepté. Que dites-vous ?","rep":"Passe","options":["Passe","2SA","3♥","2♠"],"com":"<em>Passe</em>. Le contrat cherché est atteint : 2♥ joué par la main forte. Toute autre enchère promettrait des valeurs que vous n'avez pas."},{"id":"tex-08","role":"Répondant","seq":["1SA","2♥","2♠","?"],"main":{"p":"A V 9 7 3","c":"8 5","k":"D V 6","t":"9 4 2"},"h":8,"question":"L'ouvreur a nommé vos Piques. Que dites-vous ?","rep":"2SA","options":["2SA","3♠","Passe","3SA"],"com":"<em>2SA</em> : 8-9 H et exactement cinq cartes. L'ouvreur choisira entre passer, 3♠, 3SA et 4♠ selon sa force et son nombre de Piques."},{"id":"tex-09","role":"Répondant","seq":["1SA","2♥","2♠","?"],"main":{"p":"A V 9 7 3","c":"R 5","k":"D 10 6","t":"A 4 2"},"h":14,"question":"Quatorze points et cinq Piques. Que dites-vous ?","rep":"3SA","options":["3SA","4♠","2SA","3♠"],"com":"<em>3SA</em>, qui offre le choix : l'ouvreur passera avec deux Piques et corrigera à 4♠ avec trois. 4♠ direct imposerait un contrat qui peut être moins bon."},{"id":"tex-10","role":"Répondant","seq":["1SA","?"],"main":{"p":"7","c":"A D 10 8 6 3","k":"R V 5","t":"R 4 2"},"h":13,"question":"Six Cœurs, treize points, pas d'ambition de chelem. Que dites-vous ?","rep":"4♦","options":["4♦","2♦","4♥","3♥"],"com":"<em>4♦</em>, le Texas au palier de 4 : six cartes, une main de manche, et la porte du chelem fermée. L'ouvreur dira 4♥ et jouera le contrat."},{"id":"tex-11","role":"Ouvreur","seq":["1SA","4♦","?"],"main":{"p":"A D 9 5","c":"R 4","k":"A D 8","t":"D 10 7 3"},"h":17,"question":"Le partenaire annonce le Texas au palier de 4. Que dites-vous ?","rep":"4♥","options":["4♥","4♠","4SA","Passe"],"com":"<em>4♥</em>. L'acceptation reste obligatoire, et le partenaire a exclu le chelem : vos 17 H ne changent rien, il connaît la fourchette de votre ouverture."},{"id":"tex-12","role":"Répondant","seq":["1SA","?"],"main":{"p":"9 5","c":"V 10 8 6 4 3","k":"D 7 2","t":"8 4"},"h":3,"question":"Six Cœurs et trois points. Que dites-vous ?","rep":"2♦","options":["2♦","4♦","3♥","Passe"],"com":"<em>2♦</em>, puis passe sur 2♥. Le Texas au palier de 4 promet une main de manche : ici, il s'agit seulement de fuir 1SA vers un contrat jouable."},{"id":"tex-13","role":"Répondant","seq":["1SA","?"],"main":{"p":"A D 9 7 3","c":"8","k":"R 5 4","t":"A V 7 2"},"h":14,"question":"Cinq Piques, quatre Trèfles, quatorze points. Que dites-vous ?","rep":"2♥","options":["2♥","2♣","3♣","3SA"],"com":"<em>2♥</em> d'abord : on montre la majeure cinquième, puis 3♣ au tour suivant, forcing de manche. Le singleton Cœur rend 3SA très douteux."},{"id":"tex-14","role":"Ouvreur","seq":["1SA","2♥","2♠","2SA","?"],"main":{"p":"A D 6 5","c":"D 9 4","k":"A R 8","t":"10 7 3"},"h":15,"question":"Le partenaire invite avec cinq Piques. Que dites-vous ?","rep":"4♠","options":["4♠","3♠","3SA","Passe"],"com":"<em>4♠</em>. Quatre Piques en face de cinq et un minimum bien placé : le fit neuvième vaut mieux que les points manquants, et 3SA se jouerait sans arrêt à Cœur."},{"id":"tex-15","role":"Ouvreur","seq":["1SA","2♦","2♥","2SA","?"],"main":{"p":"A D 9 5","c":"8 4","k":"R D 7","t":"R V 9 3"},"h":15,"question":"Le partenaire invite avec cinq Cœurs. Que dites-vous ?","rep":"Passe","options":["Passe","3SA","3♥","4♥"],"com":"<em>Passe</em>. Quinze points, le minimum de l'ouverture, et seulement deux Cœurs : 23-24 points à deux ne font pas une manche. L'invitation se refuse aussi."},{"id":"tex-16","role":"Répondant","seq":["2SA","?"],"main":{"p":"R 10 8 6 3","c":"9 4","k":"D 8 5","t":"7 6 2"},"h":5,"question":"L'ouverture est de 2SA. Que dites-vous ?","rep":"3♥","options":["3♥","3♠","3♦","4♠"],"com":"<em>3♥</em> demande les Piques : le mécanisme est le même, décalé d'un palier. Cinq points en face de 20-21 H suffisent largement pour la manche."},{"id":"tex-17","role":"Ouvreur","seq":["2SA","3♥","?"],"main":{"p":"A D 7","c":"A R 5","k":"R D 9 4","t":"D 8 3"},"h":20,"question":"Le partenaire transfère à Pique. Que dites-vous ?","rep":"3♠","options":["3♠","4♠","3SA","4♥"],"com":"<em>3♠</em>, l'acceptation. C'est au répondant de choisir la hauteur : il passera avec une main faible et cinq cartes seulement, conclura sinon."},{"id":"tex-18","role":"Répondant","seq":["1SA","2♦","3♥","?"],"main":{"p":"8 4","c":"R 10 8 6 3","k":"9 7 5","t":"6 3 2"},"h":3,"question":"L'ouvreur a sur-accepté. Que dites-vous ?","rep":"4♥","options":["4♥","Passe","3SA","4♦"],"com":"<em>4♥</em>. Le saut annonçait quatre atouts et 17 H : neuf atouts et 20 points à deux, la manche se joue même avec trois points en face."},{"id":"tex-19","role":"Répondant","seq":["1SA","?"],"main":{"p":"A D 5","c":"R V 9 7 3","k":"A D 6","t":"8 4"},"h":16,"question":"Seize points et cinq Cœurs. Que dites-vous ?","rep":"2♦","options":["2♦","4♦","4SA","3SA"],"com":"<em>2♦</em> d'abord. Le chelem est en vue — 31 à 33 points à deux — et c'est justement pour cela qu'il ne faut pas prendre le Texas au palier de 4, qui l'exclurait."},{"id":"tex-20","role":"Répondant","seq":["1SA","?"],"main":{"p":"D 8 5","c":"R 7 4","k":"9 3","t":"A 10 8 6 2"},"h":9,"question":"Neuf points, cinq Trèfles, aucune majeure cinquième. Que dites-vous ?","rep":"2SA","options":["2SA","2♣","2♦","3♣"],"com":"<em>2SA</em>, naturel et invitationnel. Les transferts n'ont mangé que 2♦ et 2♥ : le 2SA du répondant garde tout son sens, 8-9 H sans majeure cinquième."},{"id":"tex-21","role":"Ouvreur","seq":["1SA","2♥","?"],"main":{"p":"R V 8 5","c":"A 9","k":"D V 7 4","t":"A 6 3"},"h":15,"question":"Quatre Piques, quinze points. Que dites-vous ?","rep":"2♠","options":["2♠","3♠","2SA","4♠"],"com":"<em>2♠</em>, l'acceptation simple. La super-acceptation demande quatre atouts <em>et</em> 17 H : avec le minimum, on se tait et l'on laisse le partenaire décrire sa main."},{"id":"tex-22","role":"Répondant","seq":["1SA","2♦","2♥","?"],"main":{"p":"R 8 4","c":"A V 9 6 3","k":"D 10 5","t":"D 7"},"h":12,"question":"Douze points et cinq Cœurs. Que dites-vous ?","rep":"3SA","options":["3SA","4♥","2SA","3♥"],"com":"<em>3SA</em> : 10 à 15 H avec exactement cinq cartes. L'ouvreur tranchera — 3SA avec deux Cœurs, 4♥ avec trois."},{"id":"tex-23","role":"Ouvreur","seq":["1SA","2♦","2♥","3SA","?"],"main":{"p":"A D 6 5","c":"D 9 4","k":"A R 8","t":"10 7 3"},"h":15,"question":"Le partenaire offre le choix de la manche. Que dites-vous ?","rep":"4♥","options":["4♥","Passe","4SA","5♥"],"com":"<em>4♥</em>. Trois Cœurs en face de cinq : le fit huitième l'emporte sur 3SA, d'autant que vos Trèfles ne sont pas tenus."},{"id":"tex-24","role":"Répondant","seq":["1SA","2♥","2♠","?"],"main":{"p":"R 10 8 6 4 3","c":"9 5","k":"D 8 2","t":"7 4"},"h":5,"question":"Six Piques, cinq points. Que dites-vous ?","rep":"Passe","options":["Passe","3♠","2SA","4♠"],"com":"<em>Passe</em>. 3♠ inviterait avec 8-9 H : ici la sixième carte ne compense pas l'absence de valeurs, et 2♠ est déjà un bon contrat."},{"id":"tex-25","role":"Répondant","seq":["1SA","2♥","2♠","?"],"main":{"p":"A D 9 6 5 3","c":"8 4","k":"R D 7","t":"9 2"},"h":11,"question":"Six Piques, onze points. Que dites-vous ?","rep":"4♠","options":["4♠","3♠","3SA","2SA"],"com":"<em>4♠</em> : 10 à 15 H et six cartes, la manche est à jouer. 3SA serait absurde avec une couleur sixième et deux doubletons."}]
+};
+</script>
+<script>
+/* Enchères gadget — moteur commun à toutes les leçons.
+   La page de leçon définit window.LECON = {id, titre, banque} avant d'appeler ce fichier. */
+/* =========================================================
+   Persistance : window.storage si disponible, sinon localStorage
+   ========================================================= */
+const LECON = window.LECON || {id:"lecon", titre:"", banque:[]};
+const PREFIX = "gadget:" + LECON.id + ":";
+// une lecture qui ne répond pas ne doit jamais retarder l'affichage
+function delai(promesse, ms){
+  return Promise.race([
+    promesse,
+    new Promise(r => setTimeout(() => r(null), ms))
+  ]);
+}
+const store = {
+  async get(cle){
+    try{
+      if(window.storage && window.storage.get){
+        const r = await delai(window.storage.get(PREFIX+cle), 1500);
+        return r ? JSON.parse(r.value) : null;
+      }
+      const v = localStorage.getItem(PREFIX+cle);
+      return v ? JSON.parse(v) : null;
+    }catch(e){ return null; }
+  },
+  async set(cle, val){
+    try{
+      if(window.storage && window.storage.set){
+        await delai(window.storage.set(PREFIX+cle, JSON.stringify(val)), 1500);
+        return;
+      }
+      localStorage.setItem(PREFIX+cle, JSON.stringify(val));
+    }catch(e){ /* sans persistance, le quiz fonctionne quand même */ }
+  }
+};
+
+/* =========================================================
+   Banque : 25 donnes
+   p = Pique, c = Cœur, k = Carreau, t = Trèfle
+   seq commence toujours par l'ouvreur
+   ========================================================= */
+const BANQUE = LECON.banque || [];
+
+/* =========================================================
+   Rendu
+   ========================================================= */
+const COULEUR = {"♠":"n","♥":"r","♦":"r","♣":"n"};
+function colorise(txt){
+  return String(txt).replace(/[♠♥♦♣]/g, s => '<b class="'+COULEUR[s]+'">'+s+'</b>');
+}
+function htmlEncheres(seq){
+  let lignes = "", i = 0;
+  while(i < seq.length){
+    const g = seq[i] !== undefined ? seq[i] : "";
+    const d = seq[i+1] !== undefined ? seq[i+1] : "";
+    lignes += '<div class="ligne">'
+      + '<span'+(g==="?"?' class="attente"':'')+'>'+colorise(g)+'</span>'
+      + '<span'+(d==="?"?' class="attente"':'')+'>'+colorise(d)+'</span></div>';
+    i += 2;
+  }
+  return '<div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div>'+lignes+'</div>';
+}
+function htmlMain(m){
+  return '<div class="main">'
+    + '<div><span class="sym n">♠</span>'+m.p+'</div>'
+    + '<div><span class="sym r">♥</span>'+m.c+'</div>'
+    + '<div><span class="sym r">♦</span>'+m.k+'</div>'
+    + '<div><span class="sym n">♣</span>'+m.t+'</div>'
+    + '</div>';
+}
+
+/* =========================================================
+   Quiz de 5
+   ========================================================= */
+let quiz = null;
+let historique = {};   // id -> {vus, rates}
+let cumul = {series:0, questions:0, justes:0};
+let notes = [];        // notes des séries successives : [{n, date}]
+
+function melange(t){
+  const a = t.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+function tirer5(){
+  // pondération douce : une donne déjà ratée revient plus souvent
+  const poids = BANQUE.map(d => {
+    const h = historique[d.id];
+    return 1 + (h && h.rates ? Math.min(h.rates,3)*1.5 : 0);
+  });
+  const choisies = [], dispo = BANQUE.map((d,i)=>i);
+  while(choisies.length < 5 && dispo.length){
+    const total = dispo.reduce((s,i)=>s+poids[i],0);
+    let r = Math.random()*total, k = 0;
+    while(k < dispo.length-1 && r > poids[dispo[k]]){ r -= poids[dispo[k]]; k++; }
+    choisies.push(BANQUE[dispo[k]]);
+    dispo.splice(k,1);
+  }
+  return choisies;
+}
+function nouvelleSerie(){
+  quiz = {donnes: tirer5(), index:0, justes:0, repondu:false};
+  rendreQuiz();
+}
+function rendreQuiz(){
+  const z = document.getElementById("zone-quiz");
+  if(!quiz){
+    z.innerHTML = '<p class="intro-quiz">Cinq donnes tirées au hasard parmi les vingt-cinq de la leçon. '
+      + 'Une donne manquée a plus de chances de revenir dans les séries suivantes, '
+      + 'et la note de chaque série est conservée ci-dessous.</p>'
+      + '<button class="primaire" onclick="nouvelleSerie()">Commencer une série</button>'
+      + '<div class="stats" id="stats"></div>';
+    majStats();
+    return;
+  }
+  if(quiz.index >= quiz.donnes.length){
+    z.innerHTML = '<div class="bilan"><div class="score">'+quiz.justes+'<small> / 5</small></div>'
+      + '<p>'+commentaireScore(quiz.justes)+'</p>'
+      + '<button class="primaire" onclick="nouvelleSerie()">Nouvelle série</button></div>'
+      + '<div class="stats" id="stats"></div>';
+    majStats();
+    return;
+  }
+  const d = quiz.donnes[quiz.index];
+  const opts = melange(d.options);
+  z.innerHTML = '<div class="barre"><span>Donne '+(quiz.index+1)+' / 5</span>'
+    + '<span class="jauge"><i style="width:'+(quiz.index/5*100)+'%"></i></span>'
+    + '<span>'+quiz.justes+' juste'+(quiz.justes>1?'s':'')+'</span></div>'
+    + '<article class="donne">'
+    + '<div class="num">Vous êtes '+(d.role==="Ouvreur"?"l'ouvreur":"le répondant")+' <span class="role">· '+d.h+' H</span></div>'
+    + '<div class="duo">'+htmlEncheres(d.seq)+htmlMain(d.main)+'</div>'
+    + '<p class="question">'+d.question+'</p>'
+    + '<div class="choix" id="choix">'
+    +   opts.map(o => '<button onclick="repondre(this,\''+o.replace(/'/g,"\\'")+'\')">'+colorise(o)+'</button>').join("")
+    + '</div>'
+    + '<div class="reponse-bloc" id="verdict" hidden></div>'
+    + '</article>';
+}
+function repondre(bouton, choix){
+  if(quiz.repondu) return;
+  quiz.repondu = true;
+  const d = quiz.donnes[quiz.index];
+  const juste = (choix === d.rep);
+  document.querySelectorAll("#choix button").forEach(b => {
+    b.disabled = true;
+    if(b.textContent === d.rep) b.classList.add("juste");
+  });
+  if(!juste) bouton.classList.add("faux");
+  if(juste) quiz.justes++;
+
+  const h = historique[d.id] || {vus:0, rates:0};
+  h.vus++; if(!juste) h.rates++;
+  historique[d.id] = h;
+  cumul.questions++; if(juste) cumul.justes++;
+  sauver();
+
+  const v = document.getElementById("verdict");
+  v.hidden = false;
+  v.innerHTML = '<div class="verdict '+(juste?'bon':'mauvais')+'">'
+    + (juste ? 'Juste — ' : 'Raté — la réponse était ') + colorise(d.rep) + '</div>'
+    + '<div class="commentaire">'+colorise(d.com)+'</div>'
+    + (d.alt ? '<div class="alt">Autre lecture — '+colorise(d.alt)+'</div>' : '')
+    + '<p style="margin:14px 0 0"><button class="primaire" onclick="suivante()">'
+    + (quiz.index === 4 ? 'Voir le bilan' : 'Donne suivante') + '</button></p>';
+}
+function suivante(){
+  quiz.index++; quiz.repondu = false;
+  if(quiz.index >= 5){
+    cumul.series++;
+    notes.push({n: quiz.justes, date: Date.now()});
+    if(notes.length > 60) notes = notes.slice(-60);
+    sauver();
+  }
+  rendreQuiz();
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+function commentaireScore(n){
+  if(n === 5) return "Série parfaite. Les réponses de l'ouvreur et le choix du palier sont en place.";
+  if(n === 4) return "Une seule erreur — relisez le commentaire de la donne manquée, elle reviendra.";
+  if(n === 3) return "La convention est comprise, les suites méritent un tour de plus.";
+  if(n === 2) return "Reprenez le tableau des réponses de l'ouvreur, page 1 de la leçon.";
+  return "Relisez la leçon avant la prochaine série : le seuil de 11 H et les quatre réponses de l'ouvreur.";
+}
+function majStats(){
+  const s = document.getElementById("stats");
+  if(!s) return;
+  if(!notes.length && !cumul.questions){
+    s.innerHTML = '<p style="color:#9a9382">Les notes de vos séries s\'afficheront ici.</p>';
+    return;
+  }
+  let html = "";
+  if(cumul.questions){
+    const pct = Math.round(cumul.justes / cumul.questions * 100);
+    html += '<p style="margin:0">' + cumul.justes + ' réponses justes sur ' + cumul.questions
+          + ' (' + pct + ' %)</p>';
+  }
+  if(notes.length) html += htmlHistorique();
+  s.innerHTML = html;
+}
+function htmlHistorique(){
+  const vues = notes.slice(-24);
+  const total = notes.reduce((a,b) => a + b.n, 0);
+  const moy = (total / notes.length).toFixed(1).replace(".", ",");
+  const best = notes.reduce((a,b) => Math.max(a, b.n), 0);
+  const debut = notes.length - vues.length;
+  const colonnes = vues.map((s,i) => {
+    const cls = s.n >= 4 ? "haut" : (s.n <= 2 ? "bas" : "");
+    const h = 12 + s.n / 5 * 62;
+    const derniere = (i === vues.length - 1) ? " derniere" : "";
+    return '<div class="col'+derniere+'" title="'+dateCourte(s.date)+'">'
+         + '<span class="val">'+s.n+'</span>'
+         + '<span class="bar '+cls+'" style="height:'+h+'px"></span>'
+         + '<span class="rang">'+(debut + i + 1)+'</span></div>';
+  }).join("");
+  return '<div class="historique">'
+    + '<h3>Notes des séries</h3>'
+    + '<p class="resume">' + notes.length + ' série' + (notes.length>1?'s':'')
+    + ' · moyenne ' + moy + ' / 5 · meilleure ' + best + ' / 5'
+    + ' · dernière ' + notes[notes.length-1].n + ' / 5 le ' + dateCourte(notes[notes.length-1].date) + '</p>'
+    + '<div class="courbe">' + colonnes + '</div>'
+    + '<button class="effacer" onclick="effacerNotes()">Effacer les notes</button>'
+    + '</div>';
+}
+function dateCourte(ts){
+  try{
+    return new Date(ts).toLocaleDateString("fr-FR", {day:"2-digit", month:"2-digit"});
+  }catch(e){ return ""; }
+}
+function effacerNotes(){
+  if(!confirm("Effacer les notes de toutes les séries ?")) return;
+  notes = [];
+  cumul = {series:0, questions:0, justes:0};
+  historique = {};
+  sauver();
+  majStats();
+}
+async function publierResume(){
+  // résumé lisible par la page d'accueil : dernière note, meilleure note, nombre de séries
+  const best = notes.reduce((a,b) => Math.max(a, b.n), 0);
+  const resume = {
+    titre: LECON.titre || "",
+    series: notes.length,
+    derniere: notes.length ? notes[notes.length-1].n : null,
+    meilleure: notes.length ? best : null,
+    date: notes.length ? notes[notes.length-1].date : null
+  };
+  try{
+    if(window.storage && window.storage.set){
+      await delai(window.storage.set("gadget:resume:" + LECON.id, JSON.stringify(resume)), 1500);
+    }else{
+      localStorage.setItem("gadget:resume:" + LECON.id, JSON.stringify(resume));
+    }
+  }catch(e){}
+}
+async function sauver(){
+  await store.set("historique", historique);
+  await store.set("cumul", cumul);
+  await store.set("notes", notes);
+  await publierResume();
+}
+async function charger(){
+  const h = await store.get("historique"); if(h) historique = h;
+  const c = await store.get("cumul"); if(c) cumul = c;
+  const n = await store.get("notes"); if(Array.isArray(n)) notes = n;
+}
+
+/* =========================================================
+   Onglets
+   ========================================================= */
+// les onglets sont en CSS ; on se contente de redessiner le quiz s'il est vide
+function surOngletQuiz(){
+  const z = document.getElementById("zone-quiz");
+  if(z && (!z.innerHTML.trim() || document.getElementById("attente-quiz"))){
+    try{ rendreQuiz(); }catch(e){ secours(z, e); }
+  }
+  window.scrollTo({top:0});
+}
+function secours(zone, e){
+  zone.innerHTML = '<p class="intro-quiz">Le quiz n\'a pas pu se charger. Rechargez la page.</p>'
+    + '<button class="primaire" onclick="nouvelleSerie()">Commencer une série</button>';
+  if(window.console) console.error(e);
+}
+
+/* =========================================================
+   Contrôle de la banque (13 cartes, options cohérentes)
+   ========================================================= */
+function controlerBanque(){
+  const erreurs = [];
+  const vus = new Set();
+  BANQUE.forEach((d,i) => {
+    const n = ["p","c","k","t"].reduce((s,k) => s + d.main[k].trim().split(/\s+/).length, 0);
+    if(n !== 13) erreurs.push(d.id + " : " + n + " cartes");
+    if(!d.options.includes(d.rep)) erreurs.push(d.id + " : la réponse n'est pas dans les choix");
+    if(new Set(d.options).size !== d.options.length) erreurs.push(d.id + " : choix en double");
+    if(vus.has(d.id)) erreurs.push(d.id + " : identifiant en double");
+    vus.add(d.id);
+  });
+  if(BANQUE.length !== 25) erreurs.push("banque : " + BANQUE.length + " donnes au lieu de 25");
+  if(erreurs.length){
+    const div = document.createElement("div");
+    div.className = "alerte";
+    div.innerHTML = "<strong>Contrôle de la banque</strong><br>" + erreurs.join("<br>");
+    const hote = document.getElementById("liste-donnes");
+    if(hote) hote.before(div);
+  }
+}
+
+/* =========================================================
+   Démarrage
+   ========================================================= */
+(function(){
+  const rq = document.getElementById("r-quiz");
+  if(rq) rq.addEventListener("change", surOngletQuiz);
+  // affichage immédiat, sans attendre le stockage
+  try{ controlerBanque(); }catch(e){ if(window.console) console.error(e); }
+  const z = document.getElementById("zone-quiz");
+  try{ rendreQuiz(); }catch(e){ secours(z, e); }
+  // puis reprise des notes enregistrées, si le stockage répond
+  charger().then(() => {
+    try{ if(!quiz) rendreQuiz(); else majStats(); }catch(e){ if(window.console) console.error(e); }
+  }).catch(e => { if(window.console) console.error(e); });
+})();
+
+
+let inviteInstall = null;
+window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); inviteInstall = e; });
+function installer(){
+  if(inviteInstall){ inviteInstall.prompt(); inviteInstall = null; return; }
+  const z = document.getElementById("aide-install");
+  if(z) z.hidden = !z.hidden;
+}
+if("serviceWorker" in navigator && location.protocol.indexOf("http") === 0){
+  window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+}
+
+</script>
+</body>
+</html>

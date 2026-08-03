@@ -1,0 +1,18 @@
+{
+  "id": "./",
+  "name": "SEF avec ClaudIA — Les enchères gadget",
+  "short_name": "SEF",
+  "description": "Les enchères gadget du bridge : une convention par leçon, cours en deux pages, 25 donnes et quiz de cinq.",
+  "lang": "fr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf8f3",
+  "theme_color": "#17492f",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
