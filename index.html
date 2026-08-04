@@ -338,6 +338,7 @@ body.accueil header.top h1 .num{color:var(--brass)}
   padding:10px 12px;font-size:13px;line-height:1.55;color:#e6efe8;
 }
 .aide-install strong{color:var(--brass)}
+.aide-install .aide-motif{margin:0 0 9px;color:#f0e2c4;font-style:italic}
 
 /* ---------- diagramme à trois colonnes (enchères adverses) ---------- */
 .encheres.trois{min-width:250px}
@@ -361,6 +362,10 @@ body.accueil header.top h1 .num{color:var(--brass)}
     <p class="soustitre">Premier bloc des enchères gadget : six conventions dont on ne se passe plus. Une par leçon — le cours en deux pages, 25 donnes, un quiz de cinq.</p>
     <button id="installer" class="installer" onclick="installer()">Installer l'application</button>
     <div id="aide-install" class="aide-install" hidden>
+      <p id="aide-motif" class="aide-motif" hidden></p>
+      <strong>Windows</strong> — Chrome : l'icône d'installation à droite de la barre d'adresse,
+      ou menu ⋮ → « Diffuser, enregistrer et partager » → « Installer la page en tant qu'application ».
+      Edge : menu … → « Applications » → « Installer ce site en tant qu'application ».<br>
       <strong>Android</strong> — menu ⋮ de Chrome, puis « Ajouter à l'écran d'accueil ».<br>
       <strong>iPhone</strong> — bouton Partager de Safari, puis « Sur l'écran d'accueil ».
     </div>
@@ -468,10 +473,23 @@ body.accueil header.top h1 .num{color:var(--brass)}
 
 let inviteInstall = null;
 window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); inviteInstall = e; });
+window.addEventListener("appinstalled", () => { inviteInstall = null; });
+/* Le navigateur ne propose pas toujours l'installation automatique : le bouton
+   doit alors expliquer pourquoi, et donner la marche à suivre à la main. */
+function motifInstall(){
+  const autonome = (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches)
+    || window.navigator.standalone === true;
+  if(autonome) return "L'application est déjà installée : vous la consultez depuis l'écran d'accueil.";
+  if(location.protocol === "file:") return "Cette page est ouverte depuis un fichier enregistré sur l'appareil. L'installation exige l'adresse web du site (https://…).";
+  return "Votre navigateur n'a pas proposé l'installation automatique. Elle reste possible à la main :";
+}
 function installer(){
   if(inviteInstall){ inviteInstall.prompt(); inviteInstall = null; return; }
   const z = document.getElementById("aide-install");
-  if(z) z.hidden = !z.hidden;
+  if(!z) return;
+  const m = document.getElementById("aide-motif");
+  if(m){ m.textContent = motifInstall(); m.hidden = false; }
+  z.hidden = !z.hidden;
 }
 if("serviceWorker" in navigator && location.protocol.indexOf("http") === 0){
   window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
