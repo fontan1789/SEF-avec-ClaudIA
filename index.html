@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#17492f">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Les enchères gadget · Série ClaudIA</title>
+<title>Les gadgets indispensables · Série ClaudIA</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="icon-192.png">
@@ -320,12 +320,17 @@ body.accueil header.top h1 .num{color:var(--brass)}
   display:block;margin-top:9px;font-size:12.5px;color:var(--brass);
   border-top:1px solid var(--paper-2);padding-top:8px;
 }
-.carte-lecon.future{
-  border-left-color:var(--rule);background:var(--paper-2);opacity:.75;cursor:default;
-}
-.carte-lecon.future .numero{color:#9a9382}
-.carte-lecon.future .titre-lecon{font-size:17px;color:var(--ink-soft)}
 .mention{font-size:12.5px;color:#9a9382;margin:26px 0 0;line-height:1.5}
+
+/* ---------- carte du mémo ---------- */
+.chapo-accueil{
+  font-family:Georgia,"Palatino Linotype",Palatino,serif;font-size:16.5px;
+  line-height:1.6;color:var(--ink-soft);margin:26px 0 0;
+}
+.carte-memo{border-left-color:var(--baize);background:var(--paper-2)}
+.carte-memo:hover{border-left-color:var(--brass);background:#fffef9}
+.carte-memo .numero{color:var(--baize)}
+.carte-memo .titre-lecon{color:var(--ink)}
 
 /* ---------- aide à l'installation ---------- */
 .aide-install{
@@ -352,8 +357,8 @@ body.accueil header.top h1 .num{color:var(--brass)}
 <header class="top">
   <div class="wrap">
     <p class="serie">Série ClaudIA</p>
-    <h1>Les enchères <span class="num">gadget</span></h1>
-    <p class="soustitre">Une convention par leçon : le cours en deux pages, 25 donnes, un quiz de cinq.</p>
+    <h1>Les gadgets <span class="num">indispensables</span></h1>
+    <p class="soustitre">Premier bloc des enchères gadget : six conventions dont on ne se passe plus. Une par leçon — le cours en deux pages, 25 donnes, un quiz de cinq.</p>
     <button id="installer" class="installer" onclick="installer()">Installer l'application</button>
     <div id="aide-install" class="aide-install" hidden>
       <strong>Android</strong> — menu ⋮ de Chrome, puis « Ajouter à l'écran d'accueil ».<br>
@@ -363,8 +368,13 @@ body.accueil header.top h1 .num{color:var(--brass)}
 </header>
 
 <div class="wrap">
+  <p class="chapo-accueil">Les enchères gadget sont des enchères naturelles auxquelles on
+  décide de faire dire autre chose. Ce premier bloc réunit les six qu'un partenariat régulier
+  finit toujours par adopter. Chaque leçon en traite une : le cours en deux pages,
+  vingt-cinq donnes pour la voir fonctionner, un quiz de cinq tirées au hasard.</p>
+
   <section class="sommaire">
-    <h2>Leçons disponibles</h2>
+    <h2>Les six leçons</h2>
       <a class="carte-lecon" href="lecon-01-roudi.html" data-lecon="01-roudi">
         <span class="numero">Leçon 1</span>
         <span class="titre-lecon">Le Roudi</span>
@@ -404,15 +414,14 @@ body.accueil header.top h1 .num{color:var(--brass)}
   </section>
 
   <section class="sommaire">
-    <h2>Prochaines leçons</h2>
-      <span class="carte-lecon future"><span class="numero">À venir</span>
-        <span class="titre-lecon">Le Blackwood 5 clés</span></span>
-      <span class="carte-lecon future"><span class="numero">À venir</span>
-        <span class="titre-lecon">La quatrième couleur forcing</span></span>
-      <span class="carte-lecon future"><span class="numero">À venir</span>
-        <span class="titre-lecon">Le Michaels et l'Unusual 2SA</span></span>
-      <span class="carte-lecon future"><span class="numero">À venir</span>
-        <span class="titre-lecon">Les enchères de barrage et le Namyats</span></span>
+    <h2>Pour réviser</h2>
+      <a class="carte-lecon carte-memo" href="memo.html">
+        <span class="numero">Mémo</span>
+        <span class="titre-lecon">Les six conventions en un document</span>
+        <span class="resume-lecon">Le tableau d'ensemble, les seuils de force, les réponses
+        de chaque convention, ce que chacune coûte au langage naturel, et les points à
+        convenir avec le partenaire. S'imprime d'une traite.</span>
+      </a>
   </section>
 
   <p class="mention">Les notes des quiz sont conservées sur cet appareil seul. Chaque leçon

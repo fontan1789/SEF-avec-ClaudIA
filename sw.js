@@ -1,8 +1,9 @@
-/* Les enchères gadget — fonctionnement hors ligne. */
-const CACHE = "gadget-v7";
+/* Les gadgets indispensables — fonctionnement hors ligne. */
+const CACHE = "gadget-v10";
 const FICHIERS = [
   "./",
   "index.html",
+  "memo.html",
   "manifest.webmanifest",
   "icon-180.png",
   "icon-192.png",

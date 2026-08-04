@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#17492f">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Leçon 1 — Le Roudi · Les enchères gadget</title>
+<title>Leçon 1 — Le Roudi · Les gadgets indispensables</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="icon-192.png">
@@ -355,7 +355,7 @@ body.accueil header.top h1 .num{color:var(--brass)}
 
 <header class="top">
   <div class="wrap">
-    <p class="serie"><a class="retour" href="index.html">‹ Les enchères gadget</a></p>
+    <p class="serie"><a class="retour" href="index.html">‹ Les gadgets indispensables</a></p>
     <h1><span class="num">Leçon 1.</span> Le Roudi</h1>
     <p class="soustitre">Retrouver le fit majeur après la redemande de 1SA</p>
     <button id="installer" class="installer" onclick="installer()">Installer l'application</button>
@@ -377,14 +377,14 @@ body.accueil header.top h1 .num{color:var(--brass)}
 <section class="panel" id="panel-lecon">
 <div class="wrap lecon">
 <div class="page">
-    <p class="titre-impression">Les enchères gadget — Leçon 1 : le Roudi <span style="font-size:10pt;color:#555">(check-back Stayman)</span></p>
+    <p class="titre-impression">Les gadgets indispensables — Leçon 1 : le Roudi <span style="font-size:10pt;color:#555">(check-back Stayman)</span></p>
     <p class="sous-impression">Page 1 / 2 — le principe et les réponses de l'ouvreur</p>
 
     <p class="chapo">Le Roudi est un 2♣ artificiel qui, après la redemande de 1SA, redonne au répondant les deux renseignements que cette redemande lui a fait perdre : l'ouvreur a-t-il trois cartes dans ma majeure, ou quatre cartes dans l'autre&nbsp;?</p>
 
     <h2>Le problème</h2>
     <p>Après 1♦ – 1♠ – 1SA, l'ouvreur annonce 12-14 H et une main régulière. Le répondant qui détient 11 H et cinq Piques est dans une impasse : 3SA peut être le bon contrat, 4♠ aussi si l'ouvreur a trois Piques, et il se peut que le coup se joue seulement à la manche partielle. Toutes les enchères naturelles le forcent à choisir en aveugle.</p>
-    <p>La redemande de 1SA a en effet nié quatre Piques — sans quoi l'ouvreur aurait dit 1♠ — mais elle n'a rien dit de son soutien à trois cartes, ni de ses quatre Cœurs éventuels.</p>
+    <p>La redemande de 1SA a en effet nié quatre Piques — sans quoi l'ouvreur aurait soutenu à 2♠ — mais elle n'a rien dit de son soutien à trois cartes, ni de ses quatre Cœurs éventuels.</p>
 
     <h2>Le principe</h2>
     <div class="encadre">
@@ -804,17 +804,35 @@ const COULEUR = {"♠":"n","♥":"r","♦":"r","♣":"n"};
 function colorise(txt){
   return String(txt).replace(/[♠♥♦♣]/g, s => '<b class="'+COULEUR[s]+'">'+s+'</b>');
 }
-function htmlEncheres(seq){
+function colonnesDe(d){
+  return (d && d.colonnes) || LECON.colonnes || ["Ouvreur", "Répondant"];
+}
+function advDe(d){
+  const a = (d && d.adv !== undefined) ? d.adv : LECON.adv;
+  return (a === undefined || a === null) ? -1 : a;
+}
+/* Diagramme d'enchères : deux colonnes en silence adverse, trois quand un
+   adversaire parle. La colonne adverse est repérée par LECON.adv (ou d.adv). */
+function htmlEncheres(seq, d){
+  const cols = colonnesDe(d);
+  const n = cols.length;
+  const adv = advDe(d);
   let lignes = "", i = 0;
   while(i < seq.length){
-    const g = seq[i] !== undefined ? seq[i] : "";
-    const d = seq[i+1] !== undefined ? seq[i+1] : "";
-    lignes += '<div class="ligne">'
-      + '<span'+(g==="?"?' class="attente"':'')+'>'+colorise(g)+'</span>'
-      + '<span'+(d==="?"?' class="attente"':'')+'>'+colorise(d)+'</span></div>';
-    i += 2;
+    let cases = "";
+    for(let k = 0; k < n; k++){
+      const v = seq[i+k] !== undefined ? seq[i+k] : "";
+      const cls = [];
+      if(v === "?") cls.push("attente");
+      if(k === adv) cls.push("adv");
+      cases += '<span'+(cls.length ? ' class="'+cls.join(" ")+'"' : '')+'>'+colorise(v)+'</span>';
+    }
+    lignes += '<div class="ligne">'+cases+'</div>';
+    i += n;
   }
-  return '<div class="encheres"><div class="entete"><span>Ouvreur</span><span>Répondant</span></div>'+lignes+'</div>';
+  return '<div class="encheres'+(n === 3 ? " trois" : "")+'"><div class="entete">'
+    + cols.map(c => '<span>'+c+'</span>').join("")
+    + '</div>'+lignes+'</div>';
 }
 function htmlMain(m){
   return '<div class="main">'
@@ -884,7 +902,7 @@ function rendreQuiz(){
     + '<span>'+quiz.justes+' juste'+(quiz.justes>1?'s':'')+'</span></div>'
     + '<article class="donne">'
     + '<div class="num">Vous êtes '+(d.role==="Ouvreur"?"l'ouvreur":"le répondant")+' <span class="role">· '+d.h+' H</span></div>'
-    + '<div class="duo">'+htmlEncheres(d.seq)+htmlMain(d.main)+'</div>'
+    + '<div class="duo">'+htmlEncheres(d.seq, d)+htmlMain(d.main)+'</div>'
     + '<p class="question">'+d.question+'</p>'
     + '<div class="choix" id="choix">'
     +   opts.map(o => '<button onclick="repondre(this,\''+o.replace(/'/g,"\\'")+'\')">'+colorise(o)+'</button>').join("")
