@@ -1,11 +1,16 @@
 /* Les gadgets indispensables — fonctionnement hors ligne. */
-const CACHE = "gadget-v10";
+const CACHE = "gadget-v12";
 const FICHIERS = [
   "./",
   "index.html",
   "memo.html",
   "manifest.webmanifest",
+  "favicon.ico",
+  "icon-48.png",
+  "icon-96.png",
+  "icon-144.png",
   "icon-180.png",
+  "icon-256.png",
   "icon-192.png",
   "icon-512.png",
   "icon-512-maskable.png",
@@ -51,9 +56,11 @@ self.addEventListener("fetch", e => {
   }
 
   /* Icônes, manifest : cache d'abord. */
+  /* Pas de repli sur index.html ici : renvoyer une page HTML à la place d'une
+     icône ou du manifest empêcherait le navigateur de les lire. */
   e.respondWith(caches.match(e.request).then(rep => rep || fetch(e.request).then(res => {
     const copie = res.clone();
     caches.open(CACHE).then(c => c.put(e.request, copie)).catch(() => {});
     return res;
-  }).catch(() => caches.match("./index.html"))));
+  })));
 });
