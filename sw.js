@@ -1,10 +1,17 @@
 /* Les gadgets indispensables — fonctionnement hors ligne. */
-const CACHE = "gadget-v13";
+
+/* Le préfixe est propre à ce bloc. Le stockage des caches est partagé par
+   toute l'origine fontan1789.github.io : sans préfixe, le ménage fait à
+   l'activation effacerait aussi les caches des autres blocs. */
+const PREFIXE = "gadget1-";
+const CACHE = PREFIXE + "v14";
+
+/* Le manifest ne figure pas dans cette liste : il porte l'identité de
+   l'application et doit toujours être relu sur le réseau. */
 const FICHIERS = [
   "./",
   "index.html",
   "memo.html",
-  "manifest.webmanifest",
   "favicon.ico",
   "icon-48.png",
   "icon-96.png",
@@ -33,9 +40,14 @@ self.addEventListener("install", e => {
   );
 });
 
+/* Ne sont supprimés que les caches de ce bloc : ceux dont le nom commence par
+   le préfixe, plus les anciens noms « gadget-vNN » d'avant cette correction.
+   Les caches des autres blocs sont laissés intacts. */
 self.addEventListener("activate", e => {
   e.waitUntil(caches.keys()
-    .then(cles => Promise.all(cles.filter(c => c !== CACHE).map(c => caches.delete(c))))
+    .then(cles => Promise.all(cles
+      .filter(c => (c.indexOf(PREFIXE) === 0 || c.indexOf("gadget-v") === 0) && c !== CACHE)
+      .map(c => caches.delete(c))))
     .then(() => self.clients.claim()));
 });
 
@@ -55,9 +67,17 @@ self.addEventListener("fetch", e => {
     return;
   }
 
-  /* Icônes, manifest : cache d'abord. */
+  /* Le manifest n'est jamais mis en cache : c'est lui qui porte l'identité de
+     l'application, et une version périmée ferait croire au système qu'il
+     s'agit d'une autre application déjà installée. */
+  if(e.request.url.indexOf(".webmanifest") !== -1){
+    e.respondWith(fetch(e.request, {cache: "no-store"}).catch(() => caches.match(e.request)));
+    return;
+  }
+
+  /* Icônes : cache d'abord. */
   /* Pas de repli sur index.html ici : renvoyer une page HTML à la place d'une
-     icône ou du manifest empêcherait le navigateur de les lire. */
+     icône empêcherait le navigateur de la lire. */
   e.respondWith(caches.match(e.request).then(rep => rep || fetch(e.request).then(res => {
     const copie = res.clone();
     caches.open(CACHE).then(c => c.put(e.request, copie)).catch(() => {});
