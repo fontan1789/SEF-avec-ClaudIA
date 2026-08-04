@@ -1,5 +1,5 @@
 /* Les gadgets indispensables — fonctionnement hors ligne. */
-const CACHE = "gadget-v12";
+const CACHE = "gadget-v13";
 const FICHIERS = [
   "./",
   "index.html",
