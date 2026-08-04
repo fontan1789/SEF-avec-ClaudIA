@@ -8,8 +8,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Les gadgets indispensables · Série ClaudIA</title>
 <link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48 256x256">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="96x96" href="icon-96.png">
 <link rel="apple-touch-icon" href="icon-180.png">
-<link rel="icon" href="icon-192.png">
 <style>
 :root{
   --ink:#10161a;
@@ -363,9 +365,12 @@ body.accueil header.top h1 .num{color:var(--brass)}
     <button id="installer" class="installer" onclick="installer()">Installer l'application</button>
     <div id="aide-install" class="aide-install" hidden>
       <p id="aide-motif" class="aide-motif" hidden></p>
-      <strong>Windows</strong> — Chrome : l'icône d'installation à droite de la barre d'adresse,
-      ou menu ⋮ → « Diffuser, enregistrer et partager » → « Installer la page en tant qu'application ».
-      Edge : menu … → « Applications » → « Installer ce site en tant qu'application ».<br>
+      <strong>Windows, pour avoir l'icône sur le Bureau</strong> — le plus simple est Edge :
+      menu … → « Applications » → « Installer ce site en tant qu'application », puis cocher
+      « Créer un raccourci sur le Bureau » dans la fenêtre qui suit.<br>
+      <strong>Windows avec Chrome</strong> — l'icône d'installation à droite de la barre d'adresse
+      place l'application dans le menu Démarrer, pas sur le Bureau. Pour l'y ajouter :
+      ouvrir « chrome://apps », clic droit sur l'application, « Créer des raccourcis… », cocher Bureau.<br>
       <strong>Android</strong> — menu ⋮ de Chrome, puis « Ajouter à l'écran d'accueil ».<br>
       <strong>iPhone</strong> — bouton Partager de Safari, puis « Sur l'écran d'accueil ».
     </div>
