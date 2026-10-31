@@ -4,7 +4,7 @@
    toute l'origine fontan1789.github.io : sans préfixe, le ménage fait à
    l'activation effacerait aussi les caches des autres blocs. */
 const PREFIXE = "gadget1-";
-const CACHE = PREFIXE + "v14";
+const CACHE = PREFIXE + "v15";
 
 /* Le manifest ne figure pas dans cette liste : il porte l'identité de
    l'application et doit toujours être relu sur le réseau. */
